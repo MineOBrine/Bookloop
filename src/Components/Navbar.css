@@ -1,0 +1,76 @@
+/* src/Components/Navbar.css */
+
+.home-navbar {
+  /* background: rgba(255, 255, 255, 0.35); */
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  padding: 0rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: flex;
+  z-index: 1000;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60.5px; /* height of navbar */
+}
+
+
+.home-navbar .navbar-brand {
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #1e2b47 -70%, #5f7fe3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.home-navbar .nav-link {
+  color: #f5f5dc;
+  font-weight: 500;
+  border-color: #000000fe;
+  transition: all 0.3s ease;
+}
+
+.home-navbar .nav-link:hover {
+  color: #f5f5dc;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+}
+
+.home-navbar .btn-primary {
+  background-color: #1e2b47 !important;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.home-navbar .btn-primary:hover {
+  background-color: #2d3a5c !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(30, 43, 71, 0.4);
+}
+
+.home-navbar .btn-outline-light {
+  color: #f5f5dc;
+  border-color: #f5f5dc;
+  transition: all 0.3s ease;
+}
+
+.home-navbar .btn-outline-light:hover {
+  background-color: #f5f5dc;
+  color: #1e2b47;
+  transform: translateY(-1px);
+}
+
+.tabs .signout-btn {
+  background: rgba(148, 2, 2, 0.35);
+  color: #ff4d4d;
+}
+
+.tabs .signout-btn:hover {
+  background: rgba(255, 42, 42, 0.25);
+  color: #ff0101;
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2);
+}

@@ -1,0 +1,145 @@
+/* ---------------- Page Background ---------------- */
+.listings-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1e2b47 0%, #5f7fe3 100%);
+  color: #f5f5dc;
+  font-family: "Poppins", sans-serif;
+  padding-top: 90px;
+}
+
+/* ---------------- Hero Section ---------------- */
+.listings-hero {
+  text-align: center;
+  margin: auto auto; /*consistent spacing*/
+  max-width: 800px;
+  /* padding: 0 1rem; */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60.5px; /* height of navbar */
+}
+
+
+.listings-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #f5f5dc, #d4d4aa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* margin-bottom: 0.75rem; */
+  line-height: 1.2;
+}
+
+.listings-hero p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  color: #f5f5dc;
+}
+
+/* ---------------- Book Grid ---------------- */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+}
+
+/* ---------------- Book Card ---------------- */
+.book-card {
+  position: relative;
+  background: linear-gradient(135deg, #f5e6ca -10%, #a4b6f1 100%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.book-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------------- Book Image ---------------- */
+.book-image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------------- Book Info ---------------- */
+.book-card h5 {
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.book-card p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+/* ---------------- Chips ---------------- */
+.chips-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.book-category,
+.book-condition {
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.book-category {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.condition-good {
+  background: rgba(25, 135, 84, 0.9);
+}
+
+.condition-fair {
+  background: rgba(253, 126, 20, 0.9);
+}
+
+.condition-new {
+  background: rgba(13, 110, 253, 0.9);
+}
+
+/* ---------------- Type Badge ---------------- */
+.type-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.type-buy {
+  background: rgba(0, 123, 255, 0.9);
+}
+
+.type-borrow {
+  background: rgba(111, 66, 193, 0.9);
+}

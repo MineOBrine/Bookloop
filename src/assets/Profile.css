@@ -1,0 +1,208 @@
+/* ---------------- Page Background ---------------- */
+.profile-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* ensures hero stays on top */
+  align-items: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, #f5e6ca 0%, #a4b6f1 100%);
+  background-attachment: fixed;
+  color: #1e2b47;
+  font-family: "Inter", "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---------------- Hero Section ---------------- */
+.profile-hero {
+  text-align: center;
+  margin-top: 7rem; /* clears navbar */
+  margin-bottom: 2rem;
+  max-width: 800px;
+  padding: 0 1rem;
+}
+
+.profile-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #1e2b47 -70%, #5f7fe3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.profile-hero p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #1e2b47;
+}
+
+/* ---------------- Profile Container ---------------- */
+.profile-container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  border-radius: 1.2rem;
+  padding: 2.5rem;
+  max-width: 950px;
+  width: 100%;
+  margin-top: 1.5rem; /* lowered below hero */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  color: #1e2b47;
+  animation: fadeInUp 0.6s ease;
+}
+
+/* ---------------- Tabs ---------------- */
+/* Base pill style */
+.pill-btn {
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #414139;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Active pill */
+.pill-btn.active {
+  background: linear-gradient(135deg, #f5e6ca 0%, #a4b6f1 100%);
+  color: #1e2b47;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Hover for inactive */
+.pill-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.15);
+  color: #5f7fe3;
+}
+
+/* Signout pill */
+.pill-btn.signout {
+  background: rgba(148, 2, 2, 0.35);
+  color: #ff4d4d;
+}
+
+.pill-btn.signout:hover {
+  background: rgba(255, 42, 42, 0.25);
+  color: #ff0101;
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2);
+}
+
+/* ---------------- Tab Content ---------------- */
+.tab-content {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  padding: 1.8rem;
+  border-radius: 14px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.15);
+  color: #1e2b47;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.tab-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------------- Lists for uploads & requests ---------------- */
+.tab-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.tab-content ul li {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.tab-content ul li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.upload-link {
+  color: #1e2b47;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.upload-link:hover {
+  color: #5f7fe3;
+}
+
+/* ---------------- Interests Section ---------------- */
+.interests-section {
+  margin-top: 1rem;
+}
+
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.interest-tag {
+  background: rgba(95, 127, 227, 0.6);
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.interest-tag:hover {
+  background: #5f7fe3;
+  transform: scale(1.05);
+}
+
+/* ---------------- Animations ---------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- Responsive ---------------- */
+@media screen and (max-width: 768px) {
+  .profile-container {
+    padding: 1.8rem;
+  }
+
+  .tabs {
+    gap: 0.6rem;
+  }
+
+  .tabs button {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .profile-hero h1 {
+    font-size: 2rem;
+  }
+
+  .profile-hero p {
+    font-size: 1rem;
+  }
+}

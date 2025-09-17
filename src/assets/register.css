@@ -1,0 +1,230 @@
+/* ---------------- Page Background ---------------- */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1e2b47 90%, #5f7fe3 100%);
+  color: #f5f5dc;
+   
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ---------------- Hero Section ---------------- */
+.register-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  min-height: 70vh;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 2rem;
+}
+
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #1e2b47 -100%, #5f7fe3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.hero-text p.lead {
+  font-size: 1.2rem;
+  color: #f5f5dc;
+  margin-bottom: 0;
+}
+
+.hero-form h3 {
+  font-size: 2rem;
+  font-weight: 200;
+  background: linear-gradient(90deg,  #5f7fe3 90%, #1e2b47 );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+}
+
+.hero-form {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ---------------- Register Card ---------------- */
+.register-card {
+  max-width: 420px;                   /* slightly narrower */
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-radius: 1rem;
+  padding: 1.5rem;                    /* reduced padding */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  color: #f5f5dc;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------------- Inputs & Buttons ---------------- */
+.register-card input {
+  width: 100%;
+  padding: 0.55rem 0.85rem;           /* shorter height */
+  margin-bottom: 0.8rem;              /* less vertical gap */
+  border-radius: 0.6rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f5dc;
+  font-size: 1rem;                    /* smaller font */
+  font-weight: 500;
+  outline: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-card input:focus {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 5px rgba(95, 127, 227, 0.5);
+}
+
+/* Buttons */
+.register-card .btn {
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 0.75rem;                   /* reduced height */
+  /* font-size: 0.95rem; */
+  transition: all 0.3s ease;
+}
+
+.register-card .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(95, 127, 227, 0.35);
+}
+
+
+/* ---------------- Google Button ---------------- */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 0.6rem 1rem;
+  cursor: not-allowed;
+  color: #f5f5dc;
+  transition: background 0.3s ease;
+}
+
+.google-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ---------------- Error Text ---------------- */
+.error-text {
+  color: #ff6b6b;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* ---------------- Switch Mode Text ---------------- */
+.register-card .switch-text {
+  font-size: 1rem; /* smaller */
+  color: #f5f5dc;
+  margin-top: 0.5rem; /* optional, adjust spacing */
+}
+
+.switch-link {
+  color: #5f7fe3;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.switch-link:hover {
+  color: #1e2b47;
+}
+
+
+/* ---------------- Interests Grid ---------------- */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.interest-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.interest-card.selected {
+  background: rgba(95, 127, 227, 0.8);
+  color: #f5f5dc;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(95, 127, 227, 0.4);
+}
+
+.interest-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(95, 127, 227, 0.3);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 992px) {
+  .hero-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero-text {
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-form {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p.lead {
+    font-size: 1rem;
+  }
+
+  .register-card {
+    padding: 1.5rem;
+  }
+}

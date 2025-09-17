@@ -1,0 +1,193 @@
+/* ---------------- Page Layout ---------------- */
+.request-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem 2rem 2rem; /* pushed down below navbar */
+  color: #fbfbdc;
+  background: linear-gradient(135deg, #1e2b47 0%, #3c4a6e 50%, #0f172a 100%);
+  background-attachment: fixed;
+}
+
+/* ---------------- Hero Section ---------------- */
+.request-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.request-hero h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #f5e6ca, #a4b6f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+.request-hero p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* ---------------- Tabs (Pill Buttons) ---------------- */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  gap: 0.6rem; /* keeps spacing consistent across tabs */
+  list-style: none; /* ✅ removes default list marker */
+  padding: 0;
+}
+
+.pillr-btn {
+  border-radius: 50rem; /* pill shape */
+  padding: 0.6rem 1.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fdfde3; /* ✅ brighter for readability on dark bg */
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pillr-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fffce1; /* ✅ lighter hover color */
+  transform: translateY(-1px);
+}
+
+.pillr-btn.active {
+  background: linear-gradient(135deg, #f5e6ca 0%, #a4b6f1 100%);
+  color: #1e2b47;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+
+
+/* ---------------- Request Form Card ---------------- */
+.request-card {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px) saturate(120%);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  width: 500px;
+  max-width: 95%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.request-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+}
+.request-card h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #fbfbdc;
+}
+
+/* ---------------- Form Inputs ---------------- */
+.request-card input,
+.request-card textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fbfbdc;
+  transition: background 0.3s, transform 0.2s;
+}
+.request-card input:focus,
+.request-card textarea:focus {
+  background-color: rgba(0, 0, 0, 0.3);
+  outline: none;
+  transform: scale(1.02);
+}
+.request-card label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* ---------------- Submit Button ---------------- */
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #f5e6ca 0%, #a4b6f1 100%);
+  color: #1e2b47 !important;
+  border: none;
+  border-radius: 50rem;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.btn-submit:hover {
+  background: linear-gradient(135deg, #f5e6ca 0%, #a4b6f1 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(95, 127, 227, 0.4);
+}
+
+
+
+/* ---------------- Existing Requests Heading ---------------- */
+.requests-heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0.8rem 1.2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  color: #fbfbdc;
+}
+@media (max-width: 768px) {
+  .requests-heading {
+    text-align: center;
+    font-size: 1.4rem;
+  }
+}
+
+/* ---------------- Requests Grid ---------------- */
+.requests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ---------------- Individual Request Card ---------------- */
+.request-display {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px) saturate(120%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: #fffce1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
+}
+.request-display:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 768px) {
+  .request-card {
+    padding: 1.8rem;
+    width: 95%;
+  }
+  .requests-grid {
+    grid-template-columns: 1fr;
+  }
+}

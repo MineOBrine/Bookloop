@@ -1,0 +1,30 @@
+/* src/assets/privateRoute.css */
+
+.private-route-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.35); /* glass tint */
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-radius: 16px;
+  margin: 2rem;
+  color: #f5f5f5; /* cream-white text */
+  font-size: 1.2rem;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.private-route-message a {
+  color: #4a90e2; /* BookLoop Blue */
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.private-route-message a:hover {
+  color: #82b1ff;
+}

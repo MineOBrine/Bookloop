@@ -1,0 +1,384 @@
+/* ---------------- Page Wrapper ---------------- */
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, #f5e6ca 0%, #a4b6f1 100%);
+  background-attachment: fixed;
+  padding-top: 70px; /* avoid navbar overlap */
+  color: #1e2b47;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+ 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60.5px; /* height of navbar */
+}
+
+/* ---------------- Hero Section ---------------- */
+.hero-section {
+  min-height: 110vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5e6ca 0%, #a4b6f1 100%);
+  color: #fff;
+}
+
+.hero-section h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.hero-section p {
+  font-size: 2.5rem;
+  font-weight: 500;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.7;
+  color: #1e2b47;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.hero-section .btn-primary {
+  background-color: #1e2b47 !important; /* ensure base color overrides */
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.hero-section .btn-primary:hover,
+.hero-section .btn-primary:focus {
+  background-color: #2d3a5c !important; /* custom hover */
+  box-shadow: 0 6px 18px rgba(30, 43, 71, 0.4);
+  transform: translateY(-1px);
+}
+
+.hero-section .btn-outline-light {
+  color: #1e2b47;
+  border-color: #1e2b47;
+  transition: all 0.3s ease-in-out;
+}
+.hero-section .btn-outline-light:hover {
+  background-color: #1e2b47;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ---------------- Section Titles ---------------- */
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1e2b47;
+  background: linear-gradient(90deg, #1e2b47, #3c5ea7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; /* Safari */
+  color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.bg-navy {
+  background: #0b1e39;
+  color: #fff;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #1e2b47, #5f7fe3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------------- How It Works ---------------- */
+.how-it-works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.how-card {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.how-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.how-card i {
+  font-size: 2.5rem;
+  color: #5f7fe3;
+  margin-bottom: 1rem;
+}
+
+.horizontal-card .card-content h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.horizontal-card .card-content p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* Image adjustments */
+.horizontal-card img {
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .horizontal-card,
+  .horizontal-card.alt {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .horizontal-card img {
+    max-height: 200px;
+    margin: 1rem auto 0;
+  }
+}
+
+/* ---------------- About Section ---------------- */
+.about-section {
+  max-width: 1250px;
+  margin: 3rem auto;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  color: #1e2b47;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  font-weight: 750;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #1e2b47, #5f7fe3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------------- Footer CTA Section ---------------- */
+.footer-cta {
+  width: 100%;
+  background: linear-gradient(135deg, #1e2b47, #3c5ea7);
+  color: #fff;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.footer-cta .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-cta h2 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.footer-cta p {
+  font-size: 1.15rem;
+  font-weight: 500;
+  max-width: 650px;
+  margin: 0 auto 2.5rem auto;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-cta .btn-primary {
+  background: linear-gradient(135deg, #f5e6ca 0%, #a4b6f1 100%) !important;
+  color: #1e2b47;
+  border: none;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+  padding: 0.9rem 2.2rem;
+}
+
+.footer-cta .btn-primary:hover,
+.footer-cta .btn-primary:focus {
+  background-color: #fff !important;
+  color: #1e2b47;
+  box-shadow: 0 6px 18px rgba(245, 230, 202, 0.4);
+  transform: translateY(-2px);
+}
+
+/* --------------- Features Cards ------------- */
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.feature-card h5 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+.feature-card i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive stacking for smaller screens */
+@media (max-width: 768px) {
+  .feature-card {
+    margin: 0 auto;
+    max-width: 90%;
+  }
+  .row.g-4 {
+    gap: 2rem; /* extra spacing between stacked cards */
+  }
+}
+
+
+
+/* ---------------- Feed Section ---------------- */
+.feed-section {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  color: #1e2b47;
+}
+
+/* Horizontal Book Feed */
+.book-feed {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+}
+
+.book-card {
+  flex: 0 0 220px;
+  position: relative;
+  background: #fff;
+  border-radius: 0.9rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  color: #1e2b47;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.book-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1e2b47;
+}
+
+/* Chips */
+.chips-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.book-category,
+.book-condition {
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+/* Category */
+.book-category {
+  background: #5f7fe3;
+}
+
+/* Condition colors */
+.condition-good {
+  background: #198754;
+}
+.condition-fair {
+  background: #fd7e14;
+}
+.condition-new {
+  background: #0d6efd;
+}
+
+.no-recommend {
+  margin-top: 1.2rem;
+  font-size: 1rem;
+  color: #444;
+  font-style: italic;
+}

@@ -1,0 +1,10 @@
+Layout wrapper for all pages
+.layout-main {
+  position: relative;      /* allows background/hero images to sit behind navbar */
+  min-height: 10vh;       /* ensures full viewport height */
+  width: 100%;
+  z-index: 0;              /* content stays under navbar if needed */
+  display: flex;
+  flex-direction: column;
+  background: inherit; /* allow page-specific backgrounds to show */
+}

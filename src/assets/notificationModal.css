@@ -1,0 +1,58 @@
+/* src/assets/notification.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: rgba(0, 0, 0, 0); /* soft cream */
+  padding: 2rem;
+  border-radius: 12px;
+  width: 1px;
+  text-align: center;
+  backdrop-filter: blur(10px) contrast(135%) ;
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 10px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.25);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content h3 {
+  margin-bottom: 0.5rem;
+  color: #edeef0; /* BookLoop blue */
+  font-size: 60px;
+  font-weight: 100px;
+  text-align: auto;
+}
+
+.modal-content p {
+  margin-bottom: 1rem;
+  font-size: 35px;
+  color: #f5f5dc;
+}
+
+.modal-content button {
+  background: #0b3d91;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background: #092e6d;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
