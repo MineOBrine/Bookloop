@@ -13,24 +13,10 @@ function Profile() {
   const [exchanges, setExchanges] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  if (!user) {
-    return (
-      <div className="profile-page">
-        <div className="profile-hero">
-          <h1>My Profile</h1>
-          <p>Please register to view your profile.</p>
-        </div>
-        <div className="profile-container centered">
-          <h2>You need to register first.</h2>
-          <Link to="/register" className="btn-primary">
-            Go to Register
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
+  // ✅ Always call useEffect
   useEffect(() => {
+    if (!user?.email) return; // only run if user exists
+
     const fetchProfileData = async () => {
       setLoading(true);
       try {
@@ -56,7 +42,25 @@ function Profile() {
     };
 
     fetchProfileData();
-  }, [user.email]);
+  }, [user?.email]);
+
+  // ✅ Safe to conditionally return after hooks
+  if (!user) {
+    return (
+      <div className="profile-page">
+        <div className="profile-hero">
+          <h1>My Profile</h1>
+          <p>Please register to view your profile.</p>
+        </div>
+        <div className="profile-container centered">
+          <h2>You need to register first.</h2>
+          <Link to="/register" className="btn-primary">
+            Go to Register
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="profile-page">
