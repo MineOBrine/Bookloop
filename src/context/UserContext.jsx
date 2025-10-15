@@ -1,64 +1,50 @@
-// src/context/UserContext.jsx
 import React, { createContext, useContext, useState } from "react";
 
 const UserContext = createContext();
 
-export function UserProvider({ children }) {
+export const useUser = () => useContext(UserContext);
+
+export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const API_URL = "http://localhost:8081/api/auth";
-
-  // --- Register User ---
+  // --- Register ---
   const registerUser = async (formData) => {
-    const response = await fetch(`${API_URL}/register`, {
+    const response = await fetch("http://localhost:8081/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
 
     if (!response.ok) {
-      const errorMsg = await response.text();
-      throw new Error(errorMsg);
+      const text = await response.text();
+      throw new Error(text);
     }
 
-    return await response.text(); // "User registered successfully!"
+    setUser(formData); // temporarily set user
+    return await response.text();
   };
 
-  // --- Login User ---
-  const loginUser = async (credentials) => {
-    const response = await fetch(`${API_URL}/login`, {
+  // --- Login ---
+  const loginUser = async ({ email, password }) => {
+    const response = await fetch("http://localhost:8081/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(credentials),
+      body: JSON.stringify({ email, password }),
     });
 
     if (!response.ok) {
-      const errorMsg = await response.text();
-      throw new Error(errorMsg);
+      const text = await response.text();
+      throw new Error(text);
     }
 
-    const result = await response.text(); // "Login successful. Token: <token>"
-    const token = result.replace("Login successful. Token: ", "");
-
-    // Store token in localStorage (optional)
-    localStorage.setItem("authToken", token);
-
-    // Set user (just store email for now)
-    setUser({ email: credentials.email, token });
-
-    return result;
-  };
-
-  const logoutUser = () => {
-    localStorage.removeItem("authToken");
-    setUser(null);
+    const data = await response.text();
+    setUser({ email }); // temporarily set user
+    return data; // returns dummy token
   };
 
   return (
-    <UserContext.Provider value={{ user, registerUser, loginUser, logoutUser }}>
+    <UserContext.Provider value={{ user, registerUser, loginUser }}>
       {children}
     </UserContext.Provider>
   );
-}
-
-export const useUser = () => useContext(UserContext);
+};
