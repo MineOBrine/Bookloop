@@ -7,7 +7,7 @@ export const useUser = () => useContext(UserContext);
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // --- Register ---
+  // --- Register ---git
   const registerUser = async (formData) => {
     const response = await fetch("http://localhost:8081/api/auth/register", {
       method: "POST",
