@@ -9,15 +9,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "aos/dist/aos.css";
 import AOS from "aos";
 
+// Import Router and User Context
+import { BrowserRouter } from "react-router-dom";
+import { UserProvider } from "./context/UserContext";
+
 // Wrapper component to initialize AOS once
 function Main() {
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true }); // you can tweak settings here
+    AOS.init({ duration: 1000, once: true });
   }, []);
 
   return (
     <React.StrictMode>
-      <App />
+      <BrowserRouter>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </BrowserRouter>
     </React.StrictMode>
   );
 }

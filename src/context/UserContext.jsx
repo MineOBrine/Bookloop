@@ -1,100 +1,64 @@
 // src/context/UserContext.jsx
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const UserContext = createContext();
-export const useUser = () => useContext(UserContext);
 
-export const UserProvider = ({ children }) => {
+export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [books, setBooks] = useState([]);
-  const [requests, setRequests] = useState([]);
 
-  /* ------------------------- User Handling ------------------------- */
+  const API_URL = "http://localhost:8081/api/auth";
 
-  // ✅ Register new user (local only)
-  const registerUser = async (userData) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        setUser(userData);
-        resolve(userData);
-      }, 300); // simulate delay
+  // --- Register User ---
+  const registerUser = async (formData) => {
+    const response = await fetch(`${API_URL}/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
     });
+
+    if (!response.ok) {
+      const errorMsg = await response.text();
+      throw new Error(errorMsg);
+    }
+
+    return await response.text(); // "User registered successfully!"
   };
 
-  // ✅ Login user (local only)
+  // --- Login User ---
   const loginUser = async (credentials) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (user && credentials.email === user.email) {
-          resolve(user);
-        } else {
-          reject(new Error("Invalid credentials"));
-        }
-      }, 300);
+    const response = await fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
     });
+
+    if (!response.ok) {
+      const errorMsg = await response.text();
+      throw new Error(errorMsg);
+    }
+
+    const result = await response.text(); // "Login successful. Token: <token>"
+    const token = result.replace("Login successful. Token: ", "");
+
+    // Store token in localStorage (optional)
+    localStorage.setItem("authToken", token);
+
+    // Set user (just store email for now)
+    setUser({ email: credentials.email, token });
+
+    return result;
   };
 
-  // ✅ Sign out
-  const signOut = () => {
+  const logoutUser = () => {
+    localStorage.removeItem("authToken");
     setUser(null);
-    setBooks([]);
-    setRequests([]);
-  };
-
-  /* ------------------------- Book Handling ------------------------- */
-
-  // ✅ Add a new book (local only)
-  const addBook = (bookData) => {
-    if (!user) return;
-    const newBook = {
-      ...bookData,
-      id: books.length + 1, // local incremental id
-      owner: user.username || user.name || "Anonymous",
-      ownerEmail: user.email,
-    };
-    setBooks((prev) => [...prev, newBook]);
-    return newBook;
-  };
-
-  // ✅ Get all uploads by this user
-  const myUploads = user
-    ? books.filter((b) => b.ownerEmail === user.email)
-    : [];
-
-  // ✅ Get book by ID (for BookDetails page)
-  const getBookById = (id) =>
-    books.find((b) => String(b.id) === String(id)) || null;
-
-  /* ------------------------- Request Handling ------------------------- */
-
-  // ✅ Add a new request (local only)
-  const addRequest = (requestData) => {
-    setRequests((prev) => [...prev, requestData]);
-    return requestData;
   };
 
   return (
-    <UserContext.Provider
-      value={{
-        // user state
-        user,
-        registerUser,
-        loginUser,
-        signOut,
-
-        // books state + helpers
-        books,
-        setBooks,
-        addBook,
-        myUploads,
-        getBookById,
-
-        // requests state + helpers
-        requests,
-        addRequest,
-      }}
-    >
+    <UserContext.Provider value={{ user, registerUser, loginUser, logoutUser }}>
       {children}
     </UserContext.Provider>
   );
-};
+}
+
+export const useUser = () => useContext(UserContext);
