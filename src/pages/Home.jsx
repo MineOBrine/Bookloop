@@ -27,7 +27,8 @@ function Home() {
     const fetchBooks = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:8080/api/books");
+        const res = await fetch("http://localhost:8081/api/books"); // 
+
         if (!res.ok) throw new Error("Failed to fetch books");
         const data = await res.json();
         setBooks(data);

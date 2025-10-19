@@ -6,8 +6,9 @@ export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [books, setBooks] = useState([]); // ✅ default empty array (fixes .filter issue)
 
-  // --- Register ---git
+  // --- Register ---
   const registerUser = async (formData) => {
     const response = await fetch("http://localhost:8081/api/auth/register", {
       method: "POST",
@@ -43,7 +44,9 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, registerUser, loginUser }}>
+    <UserContext.Provider
+      value={{ user, setUser, books, setBooks, registerUser, loginUser }}
+    >
       {children}
     </UserContext.Provider>
   );
