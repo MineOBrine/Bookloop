@@ -17,8 +17,8 @@ function Home() {
   useEffect(() => {
     AOS.init({
       duration: 900,
-      once: false,   // ✅ animations fire every time element enters view
-      mirror: true,  // ✅ animations reverse when leaving view
+      once: false,
+      mirror: true,
     });
     AOS.refresh();
   }, []);
@@ -27,7 +27,16 @@ function Home() {
     const fetchBooks = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:8081/api/books"); // 
+        // ✅ Get token from localStorage
+        const token = localStorage.getItem("token");
+
+        // ✅ Include Authorization header
+        const res = await fetch("http://localhost:8081/api/books", {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
 
         if (!res.ok) throw new Error("Failed to fetch books");
         const data = await res.json();
@@ -86,7 +95,6 @@ function Home() {
               See How It Works
             </a>
 
-            {/* ✅ Changed to Link for navigation */}
             <Link
               to="/listings"
               className="btn btn-lg btn-outline-light px-4 rounded-pill shadow-sm"
@@ -162,7 +170,7 @@ function Home() {
             </div>
             <div className="col-md-6 text-center">
               <img
-                src= {exchangeImg}
+                src={exchangeImg}
                 alt="Exchange books"
                 className="img-fluid rounded shadow-sm"
               />
@@ -190,7 +198,6 @@ function Home() {
           </div>
         </div>
       </section>
-
 
       {/* Features Section */}
       <section id="features" className="py-5 bg-dark text-light">
@@ -230,14 +237,9 @@ function Home() {
         </div>
       </section>
 
-
       {/* Recommendations */}
       {user && (
-        <section
-          className="container py-5"
-          id="explore"
-          data-aos="fade-up"
-        >
+        <section className="container py-5" id="explore" data-aos="fade-up">
           <h2 className="text-center fw-bold mb-5 text-gradient">
             Recommended for You
           </h2>
@@ -257,8 +259,7 @@ function Home() {
                         <strong>Owner:</strong> {book.owner}
                       </p>
                       <p className="small mb-2">
-                        <strong>Location:</strong>{" "}
-                        {book.location || "Not specified"}
+                        <strong>Location:</strong> {book.location || "Not specified"}
                       </p>
                       <p className="fw-semibold mb-0">
                         {book.type === "borrow" ? "Borrow Fee:" : "Price:"}{" "}
