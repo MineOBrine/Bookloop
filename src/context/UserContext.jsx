@@ -1,18 +1,22 @@
-import React, { createContext, useContext, useState } from "react";
+// src/context/UserContext.jsx
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const UserContext = createContext();
-
 export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(() => {
-    // Restore user from localStorage (if token exists)
-    const token = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    return token && email ? { email, token } : null;
-  });
+  const [user, setUser] = useState(null);
+  const [books, setBooks] = useState([]); // Prevents .filter errors
 
-  const [books, setBooks] = useState([]); // ✅ Prevents .filter errors
+  // ✅ Restore user from localStorage on page refresh
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+
+    if (token && storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   // --- Register User ---
   const registerUser = async (formData) => {
@@ -24,51 +28,55 @@ export const UserProvider = ({ children }) => {
 
     if (!response.ok) {
       const text = await response.text();
-      throw new Error(text);
+      throw new Error(text || "Registration failed");
     }
 
-    const data = await response.json(); // Expecting a JSON response
-    setUser(formData);
+    const data = await response.json();
     return data;
   };
 
   // --- Login User ---
- // UserContext.jsx
-const loginUser = async ({ email, password }) => {
-  const response = await fetch("http://localhost:8081/api/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
-  });
+  const loginUser = async ({ email, password }) => {
+    const response = await fetch("http://localhost:8081/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(text);
-  }
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(text || "Invalid credentials");
+    }
 
-  // ✅ Parse JSON response (token + user info)
-  const data = await response.json();
+    const data = await response.json();
 
-  // ✅ Set user context
-  setUser({
-    email,
-    name: data.name,
-    username: data.username,
-    college: data.college,
-  });
+    // ✅ Save token + user info to localStorage
+    localStorage.setItem("token", data.token);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        email,
+        name: data.name,
+        username: data.username,
+        college: data.college,
+      })
+    );
 
-  // ✅ Save token to localStorage
-  localStorage.setItem("token", data.token);
+    // ✅ Set user state
+    setUser({
+      email,
+      name: data.name,
+      username: data.username,
+      college: data.college,
+    });
 
-  return data.token; // optional return
-};
-
-
+    return data.token; // optional return
+  };
 
   // --- Logout ---
   const logoutUser = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("email");
+    localStorage.removeItem("user");
     setUser(null);
   };
 
