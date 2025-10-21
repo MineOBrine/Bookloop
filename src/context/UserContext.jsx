@@ -50,25 +50,22 @@ export const UserProvider = ({ children }) => {
 
     const data = await response.json();
 
-    // ✅ Save token + user info to localStorage
+    // ✅ Save token to localStorage
     localStorage.setItem("token", data.token);
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        email,
-        name: data.name,
-        username: data.username,
-        college: data.college,
-      })
-    );
 
-    // ✅ Set user state
-    setUser({
+    // --- Fetch full user profile to include phone and interests ---
+    let fullUser = {
       email,
       name: data.name,
       username: data.username,
       college: data.college,
-    });
+      phone: data.phone || "", // fallback if backend doesn't send phone
+      interests: data.interests || [], // fallback if backend doesn't send interests
+    };
+
+    // Save full user to localStorage and state
+    localStorage.setItem("user", JSON.stringify(fullUser));
+    setUser(fullUser);
 
     return data.token; // optional return
   };
