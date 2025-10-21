@@ -5,7 +5,7 @@ import "../assets/Profile.css";
 import { Link } from "react-router-dom";
 
 function Profile() {
-  const { user, signOut } = useUser();
+  const { user, logoutUser } = useUser(); // ✅ use logoutUser instead of signOut
   const [activeTab, setActiveTab] = useState("account");
 
   const [uploads, setUploads] = useState([]);
@@ -13,9 +13,8 @@ function Profile() {
   const [exchanges, setExchanges] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // ✅ Always call useEffect
   useEffect(() => {
-    if (!user?.email) return; // only run if user exists
+    if (!user?.email) return;
 
     const fetchProfileData = async () => {
       setLoading(true);
@@ -44,7 +43,6 @@ function Profile() {
     fetchProfileData();
   }, [user?.email]);
 
-  // ✅ Safe to conditionally return after hooks
   if (!user) {
     return (
       <div className="profile-page">
@@ -64,15 +62,12 @@ function Profile() {
 
   return (
     <div className="profile-page">
-      {/* Hero Title */}
       <div className="profile-hero">
         <h1>My Profile</h1>
         <p>Manage your account, uploads, and requests all in one place.</p>
       </div>
 
-      {/* Profile Card */}
       <div className="profile-container">
-        {/* Tabs */}
         <div className="tabs nav nav-pills justify-content-center mb-4 flex-wrap">
           <button
             className={`pill-btn ${activeTab === "account" ? "active" : ""}`}
@@ -98,14 +93,12 @@ function Profile() {
           >
             My Requests
           </button>
-          <button onClick={signOut} className="pill-btn signout">
+          <button onClick={logoutUser} className="pill-btn signout"> {/* ✅ updated here */}
             Sign Out
           </button>
         </div>
 
-        {/* Tab Content */}
         <div className="tab-content">
-          {/* Account Details */}
           {activeTab === "account" && (
             <div className="tab-card">
               <h2>Account Details</h2>
@@ -130,7 +123,6 @@ function Profile() {
             </div>
           )}
 
-          {/* Exchange History */}
           {activeTab === "history" && (
             <div className="tab-card">
               <h2>Exchange History</h2>
@@ -140,14 +132,11 @@ function Profile() {
                 <ul>
                   {exchanges.map((ex, i) => (
                     <li key={i}>
-                      <strong>{ex.bookTitle}</strong> with{" "}
-                      {ex.otherPartyName || "Unknown"}
+                      <strong>{ex.bookTitle}</strong> with {ex.otherPartyName || "Unknown"}
                       <br />
                       <em>Status: {ex.status || "Pending"}</em>
                       <br />
-                      <small>
-                        Date: {ex.date ? new Date(ex.date).toLocaleDateString() : "N/A"}
-                      </small>
+                      <small>{ex.date ? new Date(ex.date).toLocaleDateString() : "N/A"}</small>
                     </li>
                   ))}
                 </ul>
@@ -157,7 +146,6 @@ function Profile() {
             </div>
           )}
 
-          {/* Uploads */}
           {activeTab === "uploads" && (
             <div className="tab-card">
               <h2>My Uploads</h2>
@@ -179,7 +167,6 @@ function Profile() {
             </div>
           )}
 
-          {/* Requests */}
           {activeTab === "requests" && (
             <div className="tab-card">
               <h2>My Requests</h2>
