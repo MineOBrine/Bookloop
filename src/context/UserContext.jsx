@@ -14,7 +14,12 @@ export const UserProvider = ({ children }) => {
     const storedUser = localStorage.getItem("user");
 
     if (token && storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (err) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
     }
   }, []);
 
@@ -27,12 +32,19 @@ export const UserProvider = ({ children }) => {
     });
 
     if (!response.ok) {
-      const text = await response.text();
-      throw new Error(text || "Registration failed");
+      let errorMsg = "Registration failed";
+      try {
+        const err = await response.json();
+        errorMsg = err.error || err.message || errorMsg;
+      } catch {
+        const text = await response.text();
+        errorMsg = text || errorMsg;
+      }
+      throw new Error(errorMsg);
     }
 
-    const data = await response.json();
-    return data;
+    // ✅ Auto-login after successful signup
+    await loginUser({ email: formData.email, password: formData.password });
   };
 
   // --- Login User ---
@@ -44,8 +56,15 @@ export const UserProvider = ({ children }) => {
     });
 
     if (!response.ok) {
-      const text = await response.text();
-      throw new Error(text || "Invalid credentials");
+      let errorMsg = "Invalid credentials";
+      try {
+        const err = await response.json();
+        errorMsg = err.error || err.message || errorMsg;
+      } catch {
+        const text = await response.text();
+        errorMsg = text || errorMsg;
+      }
+      throw new Error(errorMsg);
     }
 
     const data = await response.json();
@@ -53,21 +72,21 @@ export const UserProvider = ({ children }) => {
     // ✅ Save token to localStorage
     localStorage.setItem("token", data.token);
 
-    // --- Fetch full user profile to include phone and interests ---
-    let fullUser = {
+    // --- Build full user object ---
+    const fullUser = {
       email,
       name: data.name,
       username: data.username,
       college: data.college,
-      phone: data.phone || "", // fallback if backend doesn't send phone
-      interests: data.interests || [], // fallback if backend doesn't send interests
+      phone: data.phone || "",
+      interests: data.interests || [],
     };
 
-    // Save full user to localStorage and state
+    // Save user to localStorage and state
     localStorage.setItem("user", JSON.stringify(fullUser));
     setUser(fullUser);
 
-    return data.token; // optional return
+    return data.token; // optional
   };
 
   // --- Logout ---
@@ -87,7 +106,7 @@ export const UserProvider = ({ children }) => {
     };
 
     const response = await fetch(url, { ...options, headers });
-    if (response.status === 401) logoutUser();
+    if (response.status === 401 || response.status === 403) logoutUser();
     return response;
   };
 
