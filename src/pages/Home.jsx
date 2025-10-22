@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
-import BookCard from "../components/BookCard";
-import Loader from "../components/Loader";
+import BookCard from "../Components/BookCard";
+import Loader from "../Components/Loader";
 
 const Home = () => {
   const { user, books, setBooks, authFetch } = useUser(); // ✅ Added authFetch
